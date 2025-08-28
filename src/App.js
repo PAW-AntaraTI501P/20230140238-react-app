@@ -1,19 +1,19 @@
-import react, {useEffect, useState} from 'react';
+// src/App.js
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/Home/HomePage";
+import TodoPage from "./pages/Todo/TodoPage";
+import "./App.css";
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(()=> {
-    fetch('http://localhost:3001')
-    .then(response => response.json())
-    .then(data=> setMessage(data.message))
-    .catch(error => console.error('Error:', error));}, []);
-
   return (
-    <div>
-      <h1>Integrasi react dan node.js</h1>
-      <p>Pesan dari server: {message}</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/todos" element={<TodoPage />} />
+      </Routes>
+    </Router>
   );
 }
 
