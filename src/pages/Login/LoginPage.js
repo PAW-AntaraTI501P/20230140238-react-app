@@ -22,7 +22,7 @@ function LoginPage() {
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
             alert("Login berhasil!");
-            navigate("/"); //arahin ke halaman utama/dashboard setelah login
+            navigate("/home"); //arahin ke halaman utama/dashboard setelah login
         } catch (error) {
             console.error("Login gagal:", error.response.data);
             alert("Login gagal. Periksa kembali email dan password anda.");

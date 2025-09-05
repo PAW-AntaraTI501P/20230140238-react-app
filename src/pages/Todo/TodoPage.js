@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import TodoForm from "../../components/TodoForm.js";
 import TodoList from "../../components/TodoList.js";
 import SearchInput from "../../components/SearchInput.js";
+import authFetch from "../../utils/authFetch.js";
 
 const TodoPage = () => {
   const [todos, setTodos] = useState([]);
@@ -18,7 +19,7 @@ const TodoPage = () => {
       ? `/api/todos?search=${encodeURIComponent(searchQuery)}`
       : "/api/todos";
 
-    fetch(url)
+    authFetch(url)
       .then((response) => {
         if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -44,7 +45,7 @@ const TodoPage = () => {
   }, [searchTerm, fetchTodos]);
 
   const handleAddTodo = (task) => {
-    fetch("/api/todos", {
+    authFetch("/api/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +63,7 @@ const TodoPage = () => {
   };
 
   const handleDeleteTodo = (id) => {
-    fetch(`/api/todos/${id}`, {
+    authFetch(`/api/todos/${id}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -72,7 +73,7 @@ const TodoPage = () => {
   };
 
   const handleToggleCompleted = (id, completed) => {
-    fetch(`/api/todos/${id}`, {
+    authFetch(`/api/todos/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +92,7 @@ const TodoPage = () => {
   
   // --- FUNGSI BARU UNTUK UPDATE TUGAS ---
   const handleUpdateTodo = (id, newTask) => {
-    fetch(`/api/todos/${id}`, {
+    authFetch(`/api/todos/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
