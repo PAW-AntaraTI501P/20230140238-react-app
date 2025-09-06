@@ -35,6 +35,9 @@ const HomePage = () => {
       <Link to="/login" style={buttonStyle}>
         Lihat Daftar Todo
       </Link>
+      <Link to="/register" style={buttonStyle}>
+        Register
+      </Link>
       <Link to="/login" style={buttonStyle}>
         Login
       </Link>
