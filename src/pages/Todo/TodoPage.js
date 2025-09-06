@@ -5,6 +5,7 @@ import TodoForm from "../../components/TodoForm.js";
 import TodoList from "../../components/TodoList.js";
 import SearchInput from "../../components/SearchInput.js";
 import authFetch from "../../utils/authFetch.js";
+import { Link } from "react-router-dom";
 
 const TodoPage = () => {
   const [todos, setTodos] = useState([]);
@@ -120,6 +121,21 @@ const TodoPage = () => {
     );
   }
 
+  const backButtonStyle = {
+    display: 'inline-block', // Agar bisa diberi margin dan padding
+    padding: "8px 16px",
+    fontSize: "1em",
+    marginTop: "20px", // Jarak dari atas halaman
+    marginBottom: "20px", // Jarak ke header di bawahnya
+    backgroundColor: "#6c757d", // Warna abu-abu agar berbeda
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    textDecoration: "none",
+    alignSelf: 'flex-start' // Posisikan di awal (kiri)
+  };
+
   return (
     <div
       style={{
@@ -129,6 +145,9 @@ const TodoPage = () => {
         fontFamily: "sans-serif",
       }}
     >
+      <Link to="/home" style={backButtonStyle}>
+        Back
+      </Link>
       <header style={{ textAlign: "center" }}>
         <h1>Aplikasi Todo List</h1>
         <TodoForm onAddTodo={handleAddTodo} />
